@@ -1,0 +1,27 @@
+{
+	"version": "1.0",
+	"modules": {
+		"design_1": {
+			"proto_instances": {
+				"/controller_0/axi_offset": {
+					"interface": "xilinx.com:interface:axis:1.0",
+					"ports": {
+						"TDATA": { "actual": "axi_offset_tdata[31:0]"},
+						"TREADY": { "actual": "axi_offset_tready"},
+						"TVALID": { "actual": "axi_offset_tvalid"}
+					}
+				},
+				"/top_0/to_test": {
+					"interface": "xilinx.com:interface:axis:1.0",
+					"ports": {
+						"ACLK": { "actual": "ap_clk"},
+						"ARESETN": { "actual": "ap_rst_n"},
+						"TDATA": { "actual": "to_test_TDATA[31:0]"},
+						"TREADY": { "actual": "to_test_TREADY"},
+						"TVALID": { "actual": "to_test_TVALID"}
+					}
+				}
+			}
+		}
+	}
+}
