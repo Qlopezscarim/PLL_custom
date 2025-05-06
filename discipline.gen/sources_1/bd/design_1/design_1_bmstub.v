@@ -10,7 +10,12 @@ module design_1 (
   clk_270,
   clk_50,
   reset_n,
-  reset
+  reset,
+  clk_out,
+  psdone,
+  locked,
+  psen,
+  psincdec
 );
 
   (* X_INTERFACE_IGNORE = "true" *)
@@ -23,6 +28,16 @@ module design_1 (
   input reset_n;
   (* X_INTERFACE_IGNORE = "true" *)
   input reset;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output clk_out;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output psdone;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output locked;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output psen;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output psincdec;
 
   // stub module has no contents
 

@@ -44,6 +44,7 @@ entity controller is
         axi_offset_tvalid   : in  std_logic;
         axi_offset_tdata    : in  std_logic_vector(31 downto 0);
         axi_offset_tready   : out std_logic;
+        
 
         -- Clock Wizard phase control
         psen                : out std_logic;
@@ -53,6 +54,7 @@ end controller;
 
 architecture Behavioral of controller is
 
+    type clock_states is (RESETTING, COUNTING);
     type fsm_state_type is (IDLE, SHIFT, WAIT_DONE);
   -- Signals for AXI handling and phase control
     signal offset_value       : unsigned(31 downto 0) := (others => '0');
@@ -61,15 +63,25 @@ architecture Behavioral of controller is
     signal phase_direction      : std_logic := '0'; -- '1' = increment, '0' = decrement
     signal psen_reg            : std_logic := '0';
     signal fsm_state           : fsm_state_type := IDLE;
+    signal fsm_270              : clock_states := RESETTING;
+    signal fsm_10               : clock_states := RESTTING;
+    
+    signal reset_270      : std_logic := '0';
+    signal reset_10      : std_logic := '0';
     
     signal counter_270 : unsigned(31 downto 0) := (others => '0');
     signal counter_10  : unsigned(15 downto 0) := (others => '0');
     signal offset_ready : std_logic := '1'; --tracks whetehr the clocks have been compared and a new offset can be read in and clocks reset
     signal compare_clocks : std_logic := '0'; --decided that the 270 MHz clock has hit offset so the clocks should be compared!
 
+    signal reset_270_done : std_logic := '0';
+    signal reset_10_done : std_logic := '0';
+
 begin
 
     -- AXI-Stream Handling
+    
+    
     axi_stream_input : process(clk_270)
         variable local_offset : unsigned(31 downto 0);
     begin
@@ -85,8 +97,11 @@ begin
                     axi_offset_tready <= '1';
                     if offset_ready = '1' then
                         offset_value <= local_offset;
-                        counter_270 <= (others => '0');  -- Reset 270MHz counter
-                        counter_10  <= (others => '0');  -- Reset 10MHz counter
+                        reset_10 <= '1';
+                        reset_270 <= '1';
+                        offset_ready <= '0';
+                        --counter_270 <= (others => '0');  -- Reset 270MHz counter
+                        --counter_10  <= (others => '0');  -- Reset 10MHz counter
                     end if;
                 else
                     axi_offset_tready <= '0';
@@ -98,20 +113,15 @@ begin
 
     -- 270MHz Counter (using variables)
     counter_270_process : process(clk_270)
-        variable local_counter_270 : unsigned(31 downto 0) := (others => '0');
+        --variable local_counter_270 : unsigned(31 downto 0) := (others => '0');
     begin
         if rising_edge(clk_270) then
-            if reset_n = '0' then
-                local_counter_270 := (others => '0');
+            if reset_n = '0' or reset_270 ='1' then
+                counter_270 <= (others => '0');
+                reset_270 <= '0';
             else
-                local_counter_270 := local_counter_270 + 1;
+                counter_270 <= counter_270 +  to_unsigned(1, counter_270'length);
             end if;
-            
-            if local_counter_270 = offset_value then
-                compare_clocks <= '1';
-            end if;
-            
-            counter_270 <= local_counter_270;  -- Assign updated value to signal
         end if;
     end process;
 
@@ -120,12 +130,12 @@ begin
         variable local_counter_10 : unsigned(15 downto 0) := (others => '0');
     begin
         if rising_edge(clk_10) then
-            if reset_n = '0' then
-                local_counter_10 := (others => '0');
+            if reset_n = '0' or reset_10 = '1' then
+                counter_10 <= (others => '0');
+                reset_10 <= '0';
             else
-                local_counter_10 := local_counter_10 + 1;
+                counter_10 <= counter_10 + to_unsigned(1, counter_10'length);
             end if;
-            counter_10 <= local_counter_10;  -- Assign updated value to signal
         end if;
     end process;
 
@@ -158,39 +168,40 @@ begin
     end process;
 
     -- FSM for Phase Shift (controls psen, psincdec)
-    fsm_process : process(clk_270)
-    begin
-        if rising_edge(clk_270) then
-            if reset_n = '0' then
-                fsm_state <= IDLE;
-                psen_reg <= '0';
-                psincdec <= '0';
-            else
-                case fsm_state is
-                    when IDLE =>
-                        psen_reg <= '0';
-                        if phase_adjust_request = '1' then
-                            psen_reg <= '1'; --small chance this needs another cycle to have stable psincdec signal
-                            psincdec <= phase_direction;
-                            fsm_state <= SHIFT;
-                        end if;
+    
+    --fsm_process : process(clk_270)
+    --begin
+    --    if rising_edge(clk_270) then
+    --        if reset_n = '0' then
+    --            fsm_state <= IDLE;
+    --            psen_reg <= '0';
+    --            psincdec <= '0';
+    --        else
+    --            case fsm_state is
+    --                when IDLE =>
+    --                    psen_reg <= '0';
+    --                    if phase_adjust_request = '1' then
+    --                        psen_reg <= '1'; --small chance this needs another cycle to have stable psincdec signal
+    --                        psincdec <= phase_direction;
+    --                        fsm_state <= SHIFT;
+    --                    end if;
 
-                    when SHIFT =>
-                        -- psen asserted for 1 cycle
-                        psen_reg <= '0';
-                        fsm_state <= WAIT_DONE;
+    --                when SHIFT =>
+    --                    -- psen asserted for 1 cycle
+    --                    psen_reg <= '0';
+    --                    fsm_state <= WAIT_DONE;
 
-                    when WAIT_DONE =>
-                        if psdone = '1' then
-                            fsm_state <= IDLE;
-                        end if;
+    --                when WAIT_DONE =>
+    --                    if psdone = '1' then
+    --                        fsm_state <= IDLE;
+    --                    end if;
 
-                    when others =>
-                        fsm_state <= IDLE;
-                end case;
-            end if;
-        end if;
-    end process;
+    --                when others =>
+    --                    fsm_state <= IDLE;
+    --            end case;
+    --        end if;
+    --    end if;
+    --end process;
 
     -- Outputs
     psen <= psen_reg;

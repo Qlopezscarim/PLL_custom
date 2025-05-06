@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon May  5 16:10:18 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue May  6 02:46:56 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="realdigital.org:rfsoc4x2:part0:1.0" DEVICE="xczu48dr" NAME="design_1" PACKAGE="ffvg1517" SPEEDGRADE="-2"/>
 
@@ -20,10 +20,40 @@
         <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_in1"/>
       </CONNECTIONS>
     </PORT>
+    <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="clk_wiz_0_clk_out1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="clk_wiz_0_locked">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clk_wiz_0" PORT="locked"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="psdone" SIGIS="undef" SIGNAME="clk_wiz_0_psdone">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clk_wiz_0" PORT="psdone"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="psen" SIGIS="undef" SIGNAME="controller_0_psen">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="controller_0" PORT="psen"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="psincdec" SIGIS="undef" SIGNAME="controller_0_psincdec">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="controller_0" PORT="psincdec"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="reset" SIGIS="undef" SIGNAME="External_Ports_reset">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clk_wiz_0" PORT="reset"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT DIR="I" NAME="reset_n" SIGIS="undef" SIGNAME="External_Ports_reset_n">
       <CONNECTIONS>
         <CONNECTION INSTANCE="top_0" PORT="ap_rst_n"/>
-        <CONNECTION INSTANCE="clk_wiz_0" PORT="reset"/>
+        <CONNECTION INSTANCE="top_0" PORT="ap_start"/>
         <CONNECTION INSTANCE="controller_0" PORT="reset_n"/>
       </CONNECTIONS>
     </PORT>
@@ -619,11 +649,13 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_out"/>
             <CONNECTION INSTANCE="controller_0" PORT="clk_10"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="clk_wiz_0_locked">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="locked"/>
             <CONNECTION INSTANCE="controller_0" PORT="locked"/>
           </CONNECTIONS>
         </PORT>
@@ -634,6 +666,7 @@
         </PORT>
         <PORT DIR="O" NAME="psdone" SIGIS="undef" SIGNAME="clk_wiz_0_psdone">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="psdone"/>
             <CONNECTION INSTANCE="controller_0" PORT="psdone"/>
           </CONNECTIONS>
         </PORT>
@@ -647,9 +680,9 @@
             <CONNECTION INSTANCE="controller_0" PORT="psincdec"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="reset" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="External_Ports_reset_n">
+        <PORT DIR="I" NAME="reset" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="External_Ports_reset">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="reset_n"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -700,11 +733,13 @@
         <PORT DIR="O" NAME="psen" SIGIS="undef" SIGNAME="controller_0_psen">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="psen"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="psen"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="psincdec" SIGIS="undef" SIGNAME="controller_0_psincdec">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="psincdec"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="psincdec"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="reset_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset_n">
@@ -736,7 +771,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="2114070010" FULLNAME="/top_0" HWVERSION="1.0" INSTANCE="top_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="top" VLNV="xilinx.com:hls:top:1.0">
+    <MODULE COREREVISION="2114070592" FULLNAME="/top_0" HWVERSION="1.0" INSTANCE="top_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="top" VLNV="xilinx.com:hls:top:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="design_1_top_0_0"/>
@@ -753,7 +788,15 @@
             <CONNECTION INSTANCE="External_Ports" PORT="clk_270"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="ap_done" SIGIS="undef"/>
+        <PORT DIR="O" NAME="ap_idle" SIGIS="undef"/>
+        <PORT DIR="O" NAME="ap_ready" SIGIS="undef"/>
         <PORT DIR="I" NAME="ap_rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset_n">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="reset_n"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ap_start" SIGIS="undef" SIGNAME="External_Ports_reset_n">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="reset_n"/>
           </CONNECTIONS>
@@ -775,6 +818,14 @@
         </PORT>
       </PORTS>
       <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="ap_ctrl" TYPE="TARGET" VLNV="xilinx.com:interface:acc_handshake:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="done" PHYSICAL="ap_done"/>
+            <PORTMAP LOGICAL="idle" PHYSICAL="ap_idle"/>
+            <PORTMAP LOGICAL="ready" PHYSICAL="ap_ready"/>
+            <PORTMAP LOGICAL="start" PHYSICAL="ap_start"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="top_0_to_test" NAME="to_test" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="CLK_DOMAIN"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>

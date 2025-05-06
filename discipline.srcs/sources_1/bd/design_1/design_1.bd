@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xC8AE583EDC35D1D4",
+      "boundary_crc": "0x728134FB101EE1E6",
       "device": "xczu48dr-ffvg1517-2-e",
       "gen_directory": "../../../../discipline.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -30,12 +30,41 @@
       },
       "reset": {
         "direction": "I"
+      },
+      "clk_out": {
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "design_1_clk_wiz_0_0_clk_out1",
+            "value_src": "default_prop"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "ip_prop"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "ip_prop"
+          }
+        }
+      },
+      "psdone": {
+        "direction": "O"
+      },
+      "locked": {
+        "direction": "O"
+      },
+      "psen": {
+        "direction": "O"
+      },
+      "psincdec": {
+        "direction": "O"
       }
     },
     "components": {
       "top_0": {
         "vlnv": "xilinx.com:hls:top:1.0",
-        "ip_revision": "2114070010",
+        "ip_revision": "2114070592",
         "xci_name": "design_1_top_0_0",
         "xci_path": "ip/design_1_top_0_0/design_1_top_0_0.xci",
         "inst_hier_path": "top_0"
@@ -242,6 +271,7 @@
         "ports": [
           "reset_n",
           "top_0/ap_rst_n",
+          "top_0/ap_start",
           "controller_0/reset_n"
         ]
       },
@@ -267,31 +297,36 @@
       "clk_wiz_0_clk_out1": {
         "ports": [
           "clk_wiz_0/clk_out1",
+          "clk_out",
           "controller_0/clk_10"
         ]
       },
       "clk_wiz_0_locked": {
         "ports": [
           "clk_wiz_0/locked",
+          "locked",
           "controller_0/locked"
         ]
       },
       "clk_wiz_0_psdone": {
         "ports": [
           "clk_wiz_0/psdone",
+          "psdone",
           "controller_0/psdone"
         ]
       },
       "controller_0_psen": {
         "ports": [
           "controller_0/psen",
-          "clk_wiz_0/psen"
+          "clk_wiz_0/psen",
+          "psen"
         ]
       },
       "controller_0_psincdec": {
         "ports": [
           "controller_0/psincdec",
-          "clk_wiz_0/psincdec"
+          "clk_wiz_0/psincdec",
+          "psincdec"
         ]
       },
       "reset_1": {

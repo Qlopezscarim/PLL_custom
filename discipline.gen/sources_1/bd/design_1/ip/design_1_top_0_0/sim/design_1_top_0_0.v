@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:hls:top:1.0
-// IP Revision: 2114070010
+// IP Revision: 2114070592
 
 `timescale 1ns/1ps
 
@@ -57,6 +57,10 @@
 module design_1_top_0_0 (
   ap_clk,
   ap_rst_n,
+  ap_done,
+  ap_idle,
+  ap_ready,
+  ap_start,
   to_test_TDATA,
   to_test_TREADY,
   to_test_TVALID
@@ -70,6 +74,15 @@ input wire ap_clk;
 (* X_INTERFACE_MODE = "slave" *)
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ap_rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 input wire ap_rst_n;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl done" *)
+(* X_INTERFACE_MODE = "slave" *)
+output wire ap_done;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl idle" *)
+output wire ap_idle;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl ready" *)
+output wire ap_ready;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl start" *)
+input wire ap_start;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 to_test TDATA" *)
 (* X_INTERFACE_MODE = "master" *)
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME to_test, TUSER_WIDTH 0, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0" *)
@@ -85,6 +98,10 @@ output wire to_test_TVALID;
   top inst (
     .ap_clk(ap_clk),
     .ap_rst_n(ap_rst_n),
+    .ap_done(ap_done),
+    .ap_idle(ap_idle),
+    .ap_ready(ap_ready),
+    .ap_start(ap_start),
     .to_test_TDATA(to_test_TDATA),
     .to_test_TREADY(to_test_TREADY),
     .to_test_TVALID(to_test_TVALID)

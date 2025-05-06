@@ -10,11 +10,16 @@ end tb_top;
 architecture behavior of tb_top is
 
     -- Component Declaration for the DUT (Design Under Test)
-    component top_wrapper  -- This is your generated wrapper name
+    component design_1_wrapper  -- This is your generated wrapper name
         Port ( 
             -- Add all the ports from your wrapper
             clk_270             : in std_logic;
             clk_in1              : in std_logic;
+            clk_out             : out std_logic;
+            locked              : out std_logic;
+            psdone              : out std_logic;
+            psen                : out std_logic;
+            psincdec            :out std_logic;
             clk_50              : in std_logic;
             reset_n             : in std_logic;
             reset               : in std_logic
@@ -23,6 +28,11 @@ architecture behavior of tb_top is
 
     -- Signals to drive the DUT
     signal clk_270             : std_logic := '0';
+    signal locked              : std_logic := '0';
+    signal psdone              : std_logic := '0';
+    signal psen                : std_logic := '0';
+    signal psincdec            : std_logic := '0';
+    signal clk_out             : std_logic := '0';
     signal clk_10              : std_logic := '0';
     signal clk_50              : std_logic := '0';
     signal reset_n             : std_logic := '0';
@@ -31,11 +41,16 @@ architecture behavior of tb_top is
 begin
 
     -- Instantiate the DUT (your block design wrapper)
-    uut: top_wrapper
+    uut: design_1_wrapper
         port map (
             clk_270 => clk_270,
             clk_50 => clk_50,
             clk_in1 => clk_10,
+            locked => locked,
+            psdone => psdone,
+            psen => psen,
+            psincdec => psincdec,
+            clk_out => clk_out,
             reset_n => reset_n,
             reset => reset
         );
@@ -73,7 +88,7 @@ begin
         wait for 100 ns;
         reset <= '0';
         reset_n <= '1';
-        wait for 1000 ns;
+        wait for 1000000000 ns;
     end process;
 
     -- Stimuli generation for AXI stream
