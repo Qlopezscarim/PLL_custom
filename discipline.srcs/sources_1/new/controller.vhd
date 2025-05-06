@@ -85,7 +85,7 @@ begin
     -- AXI-Stream Handling
     
     
-    axi_stream_input : process(clk_270, psdone)
+    axi_stream_input : process(clk_270)
         variable local_offset : unsigned(31 downto 0);
     begin
         if rising_edge(clk_270) then
@@ -112,6 +112,14 @@ begin
                 --END OF STATE MACHINE LOGIC FOR CLOCK
                 
                 --START OF FILTER/IP OUTPUT LOGIC
+                
+                -- Avoid infinate FSM loop
+                if(psdone = '1') then
+                    phase_adjust_request <= '0';
+                    offset_ready <= '1';
+                end if;
+                -- End of intinate loop avoidance
+                
                 if(counter_270 = offset_value) and (offset_value /= ZERO_32) then
                     if counter_10 < to_unsigned(10000, counter_10'length) then
                         phase_adjust_request <= '1';
