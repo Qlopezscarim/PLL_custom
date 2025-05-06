@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:hls:top:1.0
-// IP Revision: 2114070592
+// IP Revision: 2114070818
 
 `timescale 1ns/1ps
 
@@ -94,7 +94,7 @@ output wire to_test_TVALID;
 
 (* SDX_KERNEL = "true" *)
 (* SDX_KERNEL_TYPE = "hls" *)
-(* SDX_KERNEL_SIM_INST = "inst" *)
+(* SDX_KERNEL_SIM_INST = "" *)
   top inst (
     .ap_clk(ap_clk),
     .ap_rst_n(ap_rst_n),

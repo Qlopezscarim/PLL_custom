@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue May  6 03:56:31 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue May  6 05:25:52 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="zynquplusRFSOC" BOARD="realdigital.org:rfsoc4x2:part0:1.0" DEVICE="xczu48dr" NAME="design_1" PACKAGE="ffvg1517" SPEEDGRADE="-2"/>
 
@@ -7,6 +7,7 @@
     <PORT DIR="I" NAME="clk_50" SIGIS="undef" SIGNAME="External_Ports_clk_50">
       <CONNECTIONS>
         <CONNECTION INSTANCE="clk_wiz_0" PORT="psclk"/>
+        <CONNECTION INSTANCE="controller_0" PORT="ps_clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="clk_270" SIGIS="undef" SIGNAME="External_Ports_clk_270">
@@ -725,6 +726,11 @@
             <CONNECTION INSTANCE="clk_wiz_0" PORT="locked"/>
           </CONNECTIONS>
         </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="ps_clk" SIGIS="clk" SIGNAME="External_Ports_clk_50">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_50"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" NAME="psdone" SIGIS="undef" SIGNAME="clk_wiz_0_psdone">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="psdone"/>
@@ -771,7 +777,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="2114070592" FULLNAME="/top_0" HWVERSION="1.0" INSTANCE="top_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="top" VLNV="xilinx.com:hls:top:1.0">
+    <MODULE COREREVISION="2114070818" FULLNAME="/top_0" HWVERSION="1.0" INSTANCE="top_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="top" VLNV="xilinx.com:hls:top:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="design_1_top_0_0"/>

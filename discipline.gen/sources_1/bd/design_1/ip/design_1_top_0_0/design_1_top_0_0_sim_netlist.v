@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-// Date        : Tue May  6 00:56:24 2025
+// Date        : Tue May  6 04:46:10 2025
 // Host        : ece-lnx-4511c running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
 // Command     : write_verilog -force -mode funcsim
 //               /ecel/UFAD/qlopezscarim/Desktop/wira_proto/discipline.gen/sources_1/bd/design_1/ip/design_1_top_0_0/design_1_top_0_0_sim_netlist.v
@@ -43,7 +43,7 @@ module design_1_top_0_0
   wire ap_ready;
   wire ap_rst_n;
   wire ap_start;
-  wire [28:6]\^to_test_TDATA ;
+  wire [18:3]\^to_test_TDATA ;
   wire to_test_TREADY;
   wire to_test_TVALID;
   wire [31:0]NLW_inst_to_test_TDATA_UNCONNECTED;
@@ -51,28 +51,31 @@ module design_1_top_0_0
   assign to_test_TDATA[31] = \<const0> ;
   assign to_test_TDATA[30] = \<const0> ;
   assign to_test_TDATA[29] = \<const0> ;
-  assign to_test_TDATA[28] = \^to_test_TDATA [28];
+  assign to_test_TDATA[28] = \<const0> ;
   assign to_test_TDATA[27] = \<const0> ;
   assign to_test_TDATA[26] = \<const0> ;
   assign to_test_TDATA[25] = \<const0> ;
   assign to_test_TDATA[24] = \<const0> ;
   assign to_test_TDATA[23] = \<const0> ;
   assign to_test_TDATA[22] = \<const0> ;
-  assign to_test_TDATA[21] = \^to_test_TDATA [21];
+  assign to_test_TDATA[21] = \<const0> ;
   assign to_test_TDATA[20] = \<const0> ;
   assign to_test_TDATA[19] = \<const0> ;
-  assign to_test_TDATA[18:16] = \^to_test_TDATA [18:16];
+  assign to_test_TDATA[18] = \^to_test_TDATA [18];
+  assign to_test_TDATA[17] = \<const0> ;
+  assign to_test_TDATA[16] = \<const0> ;
   assign to_test_TDATA[15] = \<const0> ;
   assign to_test_TDATA[14] = \<const0> ;
   assign to_test_TDATA[13] = \^to_test_TDATA [13];
   assign to_test_TDATA[12] = \<const0> ;
   assign to_test_TDATA[11] = \<const0> ;
   assign to_test_TDATA[10] = \<const0> ;
-  assign to_test_TDATA[9] = \<const0> ;
-  assign to_test_TDATA[8:6] = \^to_test_TDATA [8:6];
+  assign to_test_TDATA[9] = \^to_test_TDATA [9];
+  assign to_test_TDATA[8] = \<const0> ;
+  assign to_test_TDATA[7] = \^to_test_TDATA [7];
+  assign to_test_TDATA[6] = \<const0> ;
   assign to_test_TDATA[5] = \<const0> ;
-  assign to_test_TDATA[4] = \<const0> ;
-  assign to_test_TDATA[3] = \<const0> ;
+  assign to_test_TDATA[4:3] = \^to_test_TDATA [4:3];
   assign to_test_TDATA[2] = \<const0> ;
   assign to_test_TDATA[1] = \<const0> ;
   assign to_test_TDATA[0] = \<const0> ;
@@ -91,7 +94,7 @@ module design_1_top_0_0
         .ap_ready(ap_ready),
         .ap_rst_n(ap_rst_n),
         .ap_start(ap_start),
-        .to_test_TDATA({NLW_inst_to_test_TDATA_UNCONNECTED[31:29],\^to_test_TDATA ,NLW_inst_to_test_TDATA_UNCONNECTED[5:0]}),
+        .to_test_TDATA({NLW_inst_to_test_TDATA_UNCONNECTED[31:19],\^to_test_TDATA ,NLW_inst_to_test_TDATA_UNCONNECTED[2:0]}),
         .to_test_TREADY(to_test_TREADY),
         .to_test_TVALID(to_test_TVALID));
 endmodule
@@ -395,7 +398,7 @@ module design_1_top_0_0_top
   wire regslice_both_to_test_U_n_4;
   wire regslice_both_to_test_U_n_6;
   wire regslice_both_to_test_U_n_7;
-  wire [21:21]\^to_test_TDATA ;
+  wire [13:13]\^to_test_TDATA ;
   wire to_test_TREADY;
   wire to_test_TVALID;
   wire [7:7]\NLW_counter_fu_44_reg[56]_i_1_CO_UNCONNECTED ;
@@ -405,32 +408,32 @@ module design_1_top_0_0_top
   assign to_test_TDATA[31] = \<const0> ;
   assign to_test_TDATA[30] = \<const0> ;
   assign to_test_TDATA[29] = \<const0> ;
-  assign to_test_TDATA[28] = \^to_test_TDATA [21];
+  assign to_test_TDATA[28] = \<const0> ;
   assign to_test_TDATA[27] = \<const0> ;
   assign to_test_TDATA[26] = \<const0> ;
   assign to_test_TDATA[25] = \<const0> ;
   assign to_test_TDATA[24] = \<const0> ;
   assign to_test_TDATA[23] = \<const0> ;
   assign to_test_TDATA[22] = \<const0> ;
-  assign to_test_TDATA[21] = \^to_test_TDATA [21];
+  assign to_test_TDATA[21] = \<const0> ;
   assign to_test_TDATA[20] = \<const0> ;
   assign to_test_TDATA[19] = \<const0> ;
-  assign to_test_TDATA[18] = \^to_test_TDATA [21];
-  assign to_test_TDATA[17] = \^to_test_TDATA [21];
-  assign to_test_TDATA[16] = \^to_test_TDATA [21];
+  assign to_test_TDATA[18] = \^to_test_TDATA [13];
+  assign to_test_TDATA[17] = \<const0> ;
+  assign to_test_TDATA[16] = \<const0> ;
   assign to_test_TDATA[15] = \<const0> ;
   assign to_test_TDATA[14] = \<const0> ;
-  assign to_test_TDATA[13] = \^to_test_TDATA [21];
+  assign to_test_TDATA[13] = \^to_test_TDATA [13];
   assign to_test_TDATA[12] = \<const0> ;
   assign to_test_TDATA[11] = \<const0> ;
   assign to_test_TDATA[10] = \<const0> ;
-  assign to_test_TDATA[9] = \<const0> ;
-  assign to_test_TDATA[8] = \^to_test_TDATA [21];
-  assign to_test_TDATA[7] = \^to_test_TDATA [21];
-  assign to_test_TDATA[6] = \^to_test_TDATA [21];
+  assign to_test_TDATA[9] = \^to_test_TDATA [13];
+  assign to_test_TDATA[8] = \<const0> ;
+  assign to_test_TDATA[7] = \^to_test_TDATA [13];
+  assign to_test_TDATA[6] = \<const0> ;
   assign to_test_TDATA[5] = \<const0> ;
-  assign to_test_TDATA[4] = \<const0> ;
-  assign to_test_TDATA[3] = \<const0> ;
+  assign to_test_TDATA[4] = \^to_test_TDATA [13];
+  assign to_test_TDATA[3] = \^to_test_TDATA [13];
   assign to_test_TDATA[2] = \<const0> ;
   assign to_test_TDATA[1] = \<const0> ;
   assign to_test_TDATA[0] = \<const0> ;
@@ -1806,10 +1809,10 @@ module design_1_top_0_0_top_regslice_both
   wire ap_rst_n;
   wire ap_start;
   wire clear;
-  wire \data_p1[28]_i_1_n_0 ;
-  wire \data_p1[28]_i_2_n_0 ;
-  wire [28:28]data_p2;
-  wire \data_p2[28]_i_1_n_0 ;
+  wire \data_p1[18]_i_1_n_0 ;
+  wire \data_p1[18]_i_2_n_0 ;
+  wire [18:18]data_p2;
+  wire \data_p2[18]_i_1_n_0 ;
   wire first_data_fu_40;
   wire [63:0]first_data_fu_40_reg;
   wire first_data_fu_40_reg_63_sn_1;
@@ -1839,13 +1842,13 @@ module design_1_top_0_0_top_regslice_both
        (.I0(state__0[1]),
         .I1(to_test_TREADY),
         .I2(state__0[0]),
-        .I3(\data_p1[28]_i_2_n_0 ),
+        .I3(\data_p1[18]_i_2_n_0 ),
         .O(next__0[0]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h5CDC)) 
     \FSM_sequential_state[1]_i_1 
-       (.I0(\data_p1[28]_i_2_n_0 ),
+       (.I0(\data_p1[18]_i_2_n_0 ),
         .I1(state__0[1]),
         .I2(state__0[0]),
         .I3(to_test_TREADY),
@@ -1872,7 +1875,7 @@ module design_1_top_0_0_top_regslice_both
   LUT5 #(
     .INIT(32'hFFBF3C0C)) 
     ack_in_t_i_1
-       (.I0(\data_p1[28]_i_2_n_0 ),
+       (.I0(\data_p1[18]_i_2_n_0 ),
         .I1(state__0[0]),
         .I2(state__0[1]),
         .I3(to_test_TREADY),
@@ -2363,46 +2366,46 @@ module design_1_top_0_0_top_regslice_both
   LUT1 #(
     .INIT(2'h1)) 
     \counter_fu_44[0]_i_2 
-       (.I0(\data_p1[28]_i_2_n_0 ),
+       (.I0(\data_p1[18]_i_2_n_0 ),
         .O(load_p2));
   LUT6 #(
     .INIT(64'hFFBBFFFF0C880F00)) 
-    \data_p1[28]_i_1 
+    \data_p1[18]_i_1 
        (.I0(data_p2),
         .I1(to_test_TREADY),
-        .I2(\data_p1[28]_i_2_n_0 ),
+        .I2(\data_p1[18]_i_2_n_0 ),
         .I3(state__0[0]),
         .I4(state__0[1]),
         .I5(to_test_TDATA),
-        .O(\data_p1[28]_i_1_n_0 ));
+        .O(\data_p1[18]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hF7)) 
-    \data_p1[28]_i_2 
+    \data_p1[18]_i_2 
        (.I0(Q[1]),
         .I1(to_test_TREADY_int_regslice),
         .I2(first_data_fu_40_reg_63_sn_1),
-        .O(\data_p1[28]_i_2_n_0 ));
+        .O(\data_p1[18]_i_2_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
-    \data_p1_reg[28] 
+    \data_p1_reg[18] 
        (.C(ap_clk),
         .CE(1'b1),
-        .D(\data_p1[28]_i_1_n_0 ),
+        .D(\data_p1[18]_i_1_n_0 ),
         .Q(to_test_TDATA),
         .R(1'b0));
   LUT2 #(
     .INIT(4'hB)) 
-    \data_p2[28]_i_1 
+    \data_p2[18]_i_1 
        (.I0(data_p2),
-        .I1(\data_p1[28]_i_2_n_0 ),
-        .O(\data_p2[28]_i_1_n_0 ));
+        .I1(\data_p1[18]_i_2_n_0 ),
+        .O(\data_p2[18]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
-    \data_p2_reg[28] 
+    \data_p2_reg[18] 
        (.C(ap_clk),
         .CE(1'b1),
-        .D(\data_p2[28]_i_1_n_0 ),
+        .D(\data_p2[18]_i_1_n_0 ),
         .Q(data_p2),
         .R(1'b0));
   LUT6 #(
@@ -2425,7 +2428,7 @@ module design_1_top_0_0_top_regslice_both
     \state[0]_i_2 
        (.I0(to_test_TVALID),
         .I1(to_test_TREADY),
-        .I2(\data_p1[28]_i_2_n_0 ),
+        .I2(\data_p1[18]_i_2_n_0 ),
         .I3(state),
         .O(\state[0]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
@@ -2433,7 +2436,7 @@ module design_1_top_0_0_top_regslice_both
     .INIT(16'hF8FF)) 
     \state[1]_i_1 
        (.I0(state),
-        .I1(\data_p1[28]_i_2_n_0 ),
+        .I1(\data_p1[18]_i_2_n_0 ),
         .I2(to_test_TREADY),
         .I3(to_test_TVALID),
         .O(\state[1]_i_1_n_0 ));

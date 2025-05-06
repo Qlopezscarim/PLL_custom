@@ -2,7 +2,7 @@
 //Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-//Date        : Tue May  6 03:56:31 2025
+//Date        : Tue May  6 05:25:51 2025
 //Host        : ece-lnx-4511c running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -63,6 +63,7 @@ module design_1
         .clk_10(clk_out),
         .clk_270(clk_270),
         .locked(locked),
+        .ps_clk(clk_50),
         .psdone(psdone),
         .psen(psen),
         .psincdec(psincdec),

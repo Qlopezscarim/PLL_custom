@@ -75,7 +75,7 @@ top_regslice_both #(
 regslice_both_to_test_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(32'd271000000),
+    .data_in(32'd271000),
     .vld_in(to_test_TVALID_int_regslice),
     .ack_in(to_test_TREADY_int_regslice),
     .data_out(to_test_TDATA),

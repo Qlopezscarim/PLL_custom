@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
--- Date        : Tue May  6 00:56:24 2025
+-- Date        : Tue May  6 04:46:10 2025
 -- Host        : ece-lnx-4511c running 64-bit Red Hat Enterprise Linux Server release 7.9 (Maipo)
 -- Command     : write_vhdl -force -mode funcsim
 --               /ecel/UFAD/qlopezscarim/Desktop/wira_proto/discipline.gen/sources_1/bd/design_1/ip/design_1_top_0_0/design_1_top_0_0_sim_netlist.vhdl
@@ -133,10 +133,10 @@ architecture STRUCTURE of design_1_top_0_0_top_regslice_both is
   signal ap_ready_INST_0_i_8_n_0 : STD_LOGIC;
   signal ap_ready_INST_0_i_9_n_0 : STD_LOGIC;
   signal \^clear\ : STD_LOGIC;
-  signal \data_p1[28]_i_1_n_0\ : STD_LOGIC;
-  signal \data_p1[28]_i_2_n_0\ : STD_LOGIC;
-  signal data_p2 : STD_LOGIC_VECTOR ( 28 to 28 );
-  signal \data_p2[28]_i_1_n_0\ : STD_LOGIC;
+  signal \data_p1[18]_i_1_n_0\ : STD_LOGIC;
+  signal \data_p1[18]_i_2_n_0\ : STD_LOGIC;
+  signal data_p2 : STD_LOGIC_VECTOR ( 18 to 18 );
+  signal \data_p2[18]_i_1_n_0\ : STD_LOGIC;
   signal first_data_fu_40_reg_63_sn_1 : STD_LOGIC;
   signal icmp_ln16_fu_105_p2 : STD_LOGIC;
   signal \next__0\ : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -170,7 +170,7 @@ architecture STRUCTURE of design_1_top_0_0_top_regslice_both is
   attribute COMPARATOR_THRESHOLD of ap_ready_INST_0_i_3 : label is 11;
   attribute SOFT_HLUTNM of \counter_fu_44[0]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \counter_fu_44[0]_i_2\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \data_p1[28]_i_2\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \data_p1[18]_i_2\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \state[1]_i_1\ : label is "soft_lutpair2";
 begin
   SR(0) <= \^sr\(0);
@@ -188,7 +188,7 @@ begin
       I0 => \state__0\(1),
       I1 => to_test_TREADY,
       I2 => \state__0\(0),
-      I3 => \data_p1[28]_i_2_n_0\,
+      I3 => \data_p1[18]_i_2_n_0\,
       O => \next__0\(0)
     );
 \FSM_sequential_state[1]_i_1\: unisim.vcomponents.LUT4
@@ -196,7 +196,7 @@ begin
       INIT => X"5CDC"
     )
         port map (
-      I0 => \data_p1[28]_i_2_n_0\,
+      I0 => \data_p1[18]_i_2_n_0\,
       I1 => \state__0\(1),
       I2 => \state__0\(0),
       I3 => to_test_TREADY,
@@ -229,7 +229,7 @@ ack_in_t_i_1: unisim.vcomponents.LUT5
       INIT => X"FFBF3C0C"
     )
         port map (
-      I0 => \data_p1[28]_i_2_n_0\,
+      I0 => \data_p1[18]_i_2_n_0\,
       I1 => \state__0\(0),
       I2 => \state__0\(1),
       I3 => to_test_TREADY,
@@ -970,23 +970,23 @@ ap_ready_INST_0_i_9: unisim.vcomponents.LUT2
       INIT => X"1"
     )
         port map (
-      I0 => \data_p1[28]_i_2_n_0\,
+      I0 => \data_p1[18]_i_2_n_0\,
       O => load_p2
     );
-\data_p1[28]_i_1\: unisim.vcomponents.LUT6
+\data_p1[18]_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFBBFFFF0C880F00"
     )
         port map (
-      I0 => data_p2(28),
+      I0 => data_p2(18),
       I1 => to_test_TREADY,
-      I2 => \data_p1[28]_i_2_n_0\,
+      I2 => \data_p1[18]_i_2_n_0\,
       I3 => \state__0\(0),
       I4 => \state__0\(1),
       I5 => \^to_test_tdata\(0),
-      O => \data_p1[28]_i_1_n_0\
+      O => \data_p1[18]_i_1_n_0\
     );
-\data_p1[28]_i_2\: unisim.vcomponents.LUT3
+\data_p1[18]_i_2\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"F7"
     )
@@ -994,37 +994,37 @@ ap_ready_INST_0_i_9: unisim.vcomponents.LUT2
       I0 => Q(1),
       I1 => to_test_TREADY_int_regslice,
       I2 => first_data_fu_40_reg_63_sn_1,
-      O => \data_p1[28]_i_2_n_0\
+      O => \data_p1[18]_i_2_n_0\
     );
-\data_p1_reg[28]\: unisim.vcomponents.FDRE
+\data_p1_reg[18]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => ap_clk,
       CE => '1',
-      D => \data_p1[28]_i_1_n_0\,
+      D => \data_p1[18]_i_1_n_0\,
       Q => \^to_test_tdata\(0),
       R => '0'
     );
-\data_p2[28]_i_1\: unisim.vcomponents.LUT2
+\data_p2[18]_i_1\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"B"
     )
         port map (
-      I0 => data_p2(28),
-      I1 => \data_p1[28]_i_2_n_0\,
-      O => \data_p2[28]_i_1_n_0\
+      I0 => data_p2(18),
+      I1 => \data_p1[18]_i_2_n_0\,
+      O => \data_p2[18]_i_1_n_0\
     );
-\data_p2_reg[28]\: unisim.vcomponents.FDRE
+\data_p2_reg[18]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => ap_clk,
       CE => '1',
-      D => \data_p2[28]_i_1_n_0\,
-      Q => data_p2(28),
+      D => \data_p2[18]_i_1_n_0\,
+      Q => data_p2(18),
       R => '0'
     );
 \first_data_fu_40[0]_i_1\: unisim.vcomponents.LUT6
@@ -1055,7 +1055,7 @@ ap_ready_INST_0_i_9: unisim.vcomponents.LUT2
         port map (
       I0 => \^to_test_tvalid\,
       I1 => to_test_TREADY,
-      I2 => \data_p1[28]_i_2_n_0\,
+      I2 => \data_p1[18]_i_2_n_0\,
       I3 => state(1),
       O => \state[0]_i_2_n_0\
     );
@@ -1065,7 +1065,7 @@ ap_ready_INST_0_i_9: unisim.vcomponents.LUT2
     )
         port map (
       I0 => state(1),
-      I1 => \data_p1[28]_i_2_n_0\,
+      I1 => \data_p1[18]_i_2_n_0\,
       I2 => to_test_TREADY,
       I3 => \^to_test_tvalid\,
       O => \state[1]_i_1_n_0\
@@ -1395,7 +1395,7 @@ architecture STRUCTURE of design_1_top_0_0_top is
   signal regslice_both_to_test_U_n_4 : STD_LOGIC;
   signal regslice_both_to_test_U_n_6 : STD_LOGIC;
   signal regslice_both_to_test_U_n_7 : STD_LOGIC;
-  signal \^to_test_tdata\ : STD_LOGIC_VECTOR ( 21 to 21 );
+  signal \^to_test_tdata\ : STD_LOGIC_VECTOR ( 13 to 13 );
   signal \NLW_counter_fu_44_reg[56]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 to 7 );
   signal \NLW_first_data_fu_40_reg[56]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 to 7 );
   attribute FSM_ENCODING : string;
@@ -1425,32 +1425,32 @@ begin
   to_test_TDATA(31) <= \<const0>\;
   to_test_TDATA(30) <= \<const0>\;
   to_test_TDATA(29) <= \<const0>\;
-  to_test_TDATA(28) <= \^to_test_tdata\(21);
+  to_test_TDATA(28) <= \<const0>\;
   to_test_TDATA(27) <= \<const0>\;
   to_test_TDATA(26) <= \<const0>\;
   to_test_TDATA(25) <= \<const0>\;
   to_test_TDATA(24) <= \<const0>\;
   to_test_TDATA(23) <= \<const0>\;
   to_test_TDATA(22) <= \<const0>\;
-  to_test_TDATA(21) <= \^to_test_tdata\(21);
+  to_test_TDATA(21) <= \<const0>\;
   to_test_TDATA(20) <= \<const0>\;
   to_test_TDATA(19) <= \<const0>\;
-  to_test_TDATA(18) <= \^to_test_tdata\(21);
-  to_test_TDATA(17) <= \^to_test_tdata\(21);
-  to_test_TDATA(16) <= \^to_test_tdata\(21);
+  to_test_TDATA(18) <= \^to_test_tdata\(13);
+  to_test_TDATA(17) <= \<const0>\;
+  to_test_TDATA(16) <= \<const0>\;
   to_test_TDATA(15) <= \<const0>\;
   to_test_TDATA(14) <= \<const0>\;
-  to_test_TDATA(13) <= \^to_test_tdata\(21);
+  to_test_TDATA(13) <= \^to_test_tdata\(13);
   to_test_TDATA(12) <= \<const0>\;
   to_test_TDATA(11) <= \<const0>\;
   to_test_TDATA(10) <= \<const0>\;
-  to_test_TDATA(9) <= \<const0>\;
-  to_test_TDATA(8) <= \^to_test_tdata\(21);
-  to_test_TDATA(7) <= \^to_test_tdata\(21);
-  to_test_TDATA(6) <= \^to_test_tdata\(21);
+  to_test_TDATA(9) <= \^to_test_tdata\(13);
+  to_test_TDATA(8) <= \<const0>\;
+  to_test_TDATA(7) <= \^to_test_tdata\(13);
+  to_test_TDATA(6) <= \<const0>\;
   to_test_TDATA(5) <= \<const0>\;
-  to_test_TDATA(4) <= \<const0>\;
-  to_test_TDATA(3) <= \<const0>\;
+  to_test_TDATA(4) <= \^to_test_tdata\(13);
+  to_test_TDATA(3) <= \^to_test_tdata\(13);
   to_test_TDATA(2) <= \<const0>\;
   to_test_TDATA(1) <= \<const0>\;
   to_test_TDATA(0) <= \<const0>\;
@@ -3339,7 +3339,7 @@ regslice_both_to_test_U: entity work.design_1_top_0_0_top_regslice_both
       icmp_ln18_reg_126 => icmp_ln18_reg_126,
       load_p2 => load_p2,
       \out\(63 downto 0) => counter_fu_44_reg(63 downto 0),
-      to_test_TDATA(0) => \^to_test_tdata\(21),
+      to_test_TDATA(0) => \^to_test_tdata\(13),
       to_test_TREADY => to_test_TREADY,
       to_test_TVALID => to_test_TVALID
     );
@@ -3376,7 +3376,7 @@ end design_1_top_0_0;
 
 architecture STRUCTURE of design_1_top_0_0 is
   signal \<const0>\ : STD_LOGIC;
-  signal \^to_test_tdata\ : STD_LOGIC_VECTOR ( 28 downto 6 );
+  signal \^to_test_tdata\ : STD_LOGIC_VECTOR ( 18 downto 3 );
   signal NLW_inst_to_test_TDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
   attribute SDX_KERNEL : string;
   attribute SDX_KERNEL of inst : label is "true";
@@ -3413,28 +3413,31 @@ begin
   to_test_TDATA(31) <= \<const0>\;
   to_test_TDATA(30) <= \<const0>\;
   to_test_TDATA(29) <= \<const0>\;
-  to_test_TDATA(28) <= \^to_test_tdata\(28);
+  to_test_TDATA(28) <= \<const0>\;
   to_test_TDATA(27) <= \<const0>\;
   to_test_TDATA(26) <= \<const0>\;
   to_test_TDATA(25) <= \<const0>\;
   to_test_TDATA(24) <= \<const0>\;
   to_test_TDATA(23) <= \<const0>\;
   to_test_TDATA(22) <= \<const0>\;
-  to_test_TDATA(21) <= \^to_test_tdata\(21);
+  to_test_TDATA(21) <= \<const0>\;
   to_test_TDATA(20) <= \<const0>\;
   to_test_TDATA(19) <= \<const0>\;
-  to_test_TDATA(18 downto 16) <= \^to_test_tdata\(18 downto 16);
+  to_test_TDATA(18) <= \^to_test_tdata\(18);
+  to_test_TDATA(17) <= \<const0>\;
+  to_test_TDATA(16) <= \<const0>\;
   to_test_TDATA(15) <= \<const0>\;
   to_test_TDATA(14) <= \<const0>\;
   to_test_TDATA(13) <= \^to_test_tdata\(13);
   to_test_TDATA(12) <= \<const0>\;
   to_test_TDATA(11) <= \<const0>\;
   to_test_TDATA(10) <= \<const0>\;
-  to_test_TDATA(9) <= \<const0>\;
-  to_test_TDATA(8 downto 6) <= \^to_test_tdata\(8 downto 6);
+  to_test_TDATA(9) <= \^to_test_tdata\(9);
+  to_test_TDATA(8) <= \<const0>\;
+  to_test_TDATA(7) <= \^to_test_tdata\(7);
+  to_test_TDATA(6) <= \<const0>\;
   to_test_TDATA(5) <= \<const0>\;
-  to_test_TDATA(4) <= \<const0>\;
-  to_test_TDATA(3) <= \<const0>\;
+  to_test_TDATA(4 downto 3) <= \^to_test_tdata\(4 downto 3);
   to_test_TDATA(2) <= \<const0>\;
   to_test_TDATA(1) <= \<const0>\;
   to_test_TDATA(0) <= \<const0>\;
@@ -3450,17 +3453,17 @@ inst: entity work.design_1_top_0_0_top
       ap_ready => ap_ready,
       ap_rst_n => ap_rst_n,
       ap_start => ap_start,
-      to_test_TDATA(31 downto 29) => NLW_inst_to_test_TDATA_UNCONNECTED(31 downto 29),
-      to_test_TDATA(28) => \^to_test_tdata\(28),
-      to_test_TDATA(27 downto 22) => NLW_inst_to_test_TDATA_UNCONNECTED(27 downto 22),
-      to_test_TDATA(21) => \^to_test_tdata\(21),
-      to_test_TDATA(20 downto 19) => NLW_inst_to_test_TDATA_UNCONNECTED(20 downto 19),
-      to_test_TDATA(18 downto 16) => \^to_test_tdata\(18 downto 16),
-      to_test_TDATA(15 downto 14) => NLW_inst_to_test_TDATA_UNCONNECTED(15 downto 14),
+      to_test_TDATA(31 downto 19) => NLW_inst_to_test_TDATA_UNCONNECTED(31 downto 19),
+      to_test_TDATA(18) => \^to_test_tdata\(18),
+      to_test_TDATA(17 downto 14) => NLW_inst_to_test_TDATA_UNCONNECTED(17 downto 14),
       to_test_TDATA(13) => \^to_test_tdata\(13),
-      to_test_TDATA(12 downto 9) => NLW_inst_to_test_TDATA_UNCONNECTED(12 downto 9),
-      to_test_TDATA(8 downto 6) => \^to_test_tdata\(8 downto 6),
-      to_test_TDATA(5 downto 0) => NLW_inst_to_test_TDATA_UNCONNECTED(5 downto 0),
+      to_test_TDATA(12 downto 10) => NLW_inst_to_test_TDATA_UNCONNECTED(12 downto 10),
+      to_test_TDATA(9) => \^to_test_tdata\(9),
+      to_test_TDATA(8) => NLW_inst_to_test_TDATA_UNCONNECTED(8),
+      to_test_TDATA(7) => \^to_test_tdata\(7),
+      to_test_TDATA(6 downto 5) => NLW_inst_to_test_TDATA_UNCONNECTED(6 downto 5),
+      to_test_TDATA(4 downto 3) => \^to_test_tdata\(4 downto 3),
+      to_test_TDATA(2 downto 0) => NLW_inst_to_test_TDATA_UNCONNECTED(2 downto 0),
       to_test_TREADY => to_test_TREADY,
       to_test_TVALID => to_test_TVALID
     );

@@ -57,6 +57,7 @@
 module design_1_controller_0_0 (
   clk_270,
   clk_10,
+  ps_clk,
   reset_n,
   locked,
   axi_offset_tvalid,
@@ -69,6 +70,10 @@ module design_1_controller_0_0 (
 
 input wire clk_270;
 input wire clk_10;
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 ps_clk CLK" *)
+(* X_INTERFACE_MODE = "slave" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ps_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, INSERT_VIP 0" *)
+input wire ps_clk;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset_n RST" *)
 (* X_INTERFACE_MODE = "slave" *)
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -89,6 +94,7 @@ input wire psdone;
   controller inst (
     .clk_270(clk_270),
     .clk_10(clk_10),
+    .ps_clk(ps_clk),
     .reset_n(reset_n),
     .locked(locked),
     .axi_offset_tvalid(axi_offset_tvalid),

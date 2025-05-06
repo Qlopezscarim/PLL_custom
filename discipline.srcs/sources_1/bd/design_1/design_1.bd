@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x728134FB101EE1E6",
+      "boundary_crc": "0x728134FB2D9EE702",
       "device": "xczu48dr-ffvg1517-2-e",
       "gen_directory": "../../../../discipline.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -64,7 +64,7 @@
     "components": {
       "top_0": {
         "vlnv": "xilinx.com:hls:top:1.0",
-        "ip_revision": "2114070592",
+        "ip_revision": "2114070818",
         "xci_name": "design_1_top_0_0",
         "xci_path": "ip/design_1_top_0_0/design_1_top_0_0.xci",
         "inst_hier_path": "top_0"
@@ -157,6 +157,10 @@
                 "value_src": "default_prop"
               }
             }
+          },
+          "ps_clk": {
+            "type": "clk",
+            "direction": "I"
           },
           "reset_n": {
             "type": "rst",
@@ -285,7 +289,8 @@
       "clk_50_1": {
         "ports": [
           "clk_50",
-          "clk_wiz_0/psclk"
+          "clk_wiz_0/psclk",
+          "controller_0/ps_clk"
         ]
       },
       "clk_in1_1": {
