@@ -94,7 +94,7 @@ output wire to_test_TVALID;
 
 (* SDX_KERNEL = "true" *)
 (* SDX_KERNEL_TYPE = "hls" *)
-(* SDX_KERNEL_SIM_INST = "" *)
+(* SDX_KERNEL_SIM_INST = "inst" *)
   top inst (
     .ap_clk(ap_clk),
     .ap_rst_n(ap_rst_n),

@@ -64,9 +64,8 @@ architecture Behavioral of controller is
     signal psen_reg            : std_logic := '0';
     signal fsm_state           : fsm_state_type := IDLE;
     signal fsm_270              : clock_states := RESETTING;
-    signal fsm_10               : clock_states := RESTTING;
+    signal fsm_10               : clock_states := RESETTING;
     
-    signal reset_270      : std_logic := '0';
     signal reset_10      : std_logic := '0';
     
     signal counter_270 : unsigned(31 downto 0) := (others => '0');
@@ -92,16 +91,25 @@ begin
                 offset_ready <= '1';
                 compare_clocks <= '0';
             else
+                --HANDLING STATE MACHINE LOGIC AND COUNTING
+                case fsm_270 is
+                    when RESETTING =>
+                        counter_270 <= (others => '0');
+                        reset_10 <= '0';
+                        fsm_270 <= COUNTING;
+                    when COUNTING =>
+                        counter_270 <= counter_270 +  to_unsigned(1, counter_270'length);
+                end case;
+                --END OF STATE MACHINE LOGIC
                 if axi_offset_tvalid = '1' then
                     local_offset := unsigned(axi_offset_tdata);
                     axi_offset_tready <= '1';
                     if offset_ready = '1' then
                         offset_value <= local_offset;
                         reset_10 <= '1';
-                        reset_270 <= '1';
                         offset_ready <= '0';
-                        --counter_270 <= (others => '0');  -- Reset 270MHz counter
-                        --counter_10  <= (others => '0');  -- Reset 10MHz counter
+                        fsm_270 <= RESETTING;
+                        --fsm_10 <= RESETTING; --this is... likely very bad. We are dynamcially resetting a clock - two drivers of the FSM. Could be bad.
                     end if;
                 else
                     axi_offset_tready <= '0';
@@ -111,31 +119,24 @@ begin
         end if;
     end process;
 
-    -- 270MHz Counter (using variables)
-    counter_270_process : process(clk_270)
-        --variable local_counter_270 : unsigned(31 downto 0) := (others => '0');
-    begin
-        if rising_edge(clk_270) then
-            if reset_n = '0' or reset_270 ='1' then
-                counter_270 <= (others => '0');
-                reset_270 <= '0';
-            else
-                counter_270 <= counter_270 +  to_unsigned(1, counter_270'length);
-            end if;
-        end if;
-    end process;
+    
 
     -- 10MHz Counter (using variables)
-    counter_10_process : process(clk_10)
-        variable local_counter_10 : unsigned(15 downto 0) := (others => '0');
+    counter_10_process : process(clk_10,reset_10)
     begin
-        if rising_edge(clk_10) then
-            if reset_n = '0' or reset_10 = '1' then
-                counter_10 <= (others => '0');
-                reset_10 <= '0';
-            else
-                counter_10 <= counter_10 + to_unsigned(1, counter_10'length);
-            end if;
+        if reset_10 = '1' then --else if statement decouples the FSM driver
+            fsm_10 <= RESETTING;
+            --counter_10 <= (others => '0');
+        elsif rising_edge(clk_10) then
+            --HANDLING STATE MACHINE LOGIC AND COUNTING
+                case fsm_10 is
+                    when RESETTING =>
+                        counter_10 <= (others => '0');
+                        fsm_10 <= COUNTING;
+                    when COUNTING =>
+                        counter_10 <= counter_10 +  to_unsigned(1, counter_10'length);
+                end case;
+                --END OF STATE MACHINE LOGIC
         end if;
     end process;
 
